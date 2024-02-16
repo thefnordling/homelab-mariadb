@@ -21,7 +21,7 @@ services:
       - /mnt/mariadb:/var/lib/mysql:Z
     deploy:
       placement:
-        constraints: [node.hostname == mariadb.home.arpa]
+        constraints: [node.hostname == mariadb]
 
   adminer:
     image: adminer:4.8.1
@@ -31,4 +31,4 @@ services:
       - 8080:8080
     deploy:
       placement:
-        constraints: [node.core == true]      
+        constraints: [node.labels.core == true]      
