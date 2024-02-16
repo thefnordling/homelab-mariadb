@@ -10,10 +10,13 @@ the mariadb service should only run on the mariadb.home.arpa node.  I am using b
 mariadb is not accessible outside the swarm cluster - for a container to have access it has to be added to the mariadb-net network.
 
 pending: 
-build a custom docker image and host it on a private/internal registry
+* build a custom docker image and host it on a private/internal registry
+
 the custom image should
-pull CA certs from vault on startup
-generate hosting certs from vault on startup
-renew hosting certs periodically/as needed
-automatic backups
-offsite backups
+* pull CA certs from vault on startup
+* generate hosting certs from vault on startup
+* renew hosting certs periodically/as needed
+
+another service that handles
+* automatic backups
+* offsite backups
