@@ -1,0 +1,34 @@
+version: '3.9'
+
+secrets:
+  mariadb-root-password:
+    external: true
+
+networks:
+  mariadb-net:
+    external: true
+
+services:
+  mariadb:
+    image: mariadb:11.2.3
+    networks:
+      mariadb-net:
+    environment:
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/mariadb-root-password
+    secrets:
+      - mariadb-root-password
+    volumes:
+      - /mnt/mariadb:/var/lib/mysql:Z
+    deploy:
+      placement:
+        constraints: [node.hostname == mariadb.home.arpa]
+
+  adminer:
+    image: adminer:4.8.1
+    networks:
+      mariadb-net:    
+    ports:
+      - 8080:8080
+    deploy:
+      placement:
+        constraints: [node.core == true]      
