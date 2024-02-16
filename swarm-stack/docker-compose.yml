@@ -7,6 +7,8 @@ secrets:
 networks:
   mariadb-net:
     external: true
+  nginx-net:
+    external: true
 
 services:
   mariadb:
@@ -27,6 +29,7 @@ services:
     image: adminer:4.8.1
     networks:
       mariadb-net:    
+      nginx-net:
     ports:
       - 8080:8080
     deploy:
